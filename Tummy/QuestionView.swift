@@ -15,9 +15,9 @@ struct QuestionView: View {
             Text(viewModel.currentQuestion.title)
             
             ForEach(viewModel.currentQuestion.options, id: \.self) { option in
-                
-                Text(option.optionText)
+                Text(option.option)
             }
+
             
             Button (action: viewModel.nextQuestion){
                 Text("Siguiente Pregunta")

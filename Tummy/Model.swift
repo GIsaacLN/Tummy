@@ -10,16 +10,16 @@ import Foundation
 struct Question: Identifiable {
     let id: UUID
     let title: String
-    let answers: [Answer]
+    let options: [Answer]
 
-    init(id: UUID = UUID(), title: String, answers: [Answer]) {
+    init(id: UUID = UUID(), title: String, options: [Answer]) {
         self.id = id
         self.title = title
         self.options = options
     }
 }
 
-struct Answer: Identifiable {
+struct Answer: Hashable, Identifiable {
     let id = UUID()
     let option: String
     let ponderation: Int

@@ -10,49 +10,56 @@ import Foundation
 extension QuestionView {
     @Observable
     class ViewModel {
-        var currentQuestion: Int = 0
+        var currentQuestionNumber: Int = 0
         var selectedAnswer : [UUID: [Answer]] = [:]
+        var questions: [Question]
+        var currentQuestion = Question(title: "Nada", options: [])
         
         init(){
             currentQuestionNumber = 0
             //Agregar Preguntas Aqui
             questions = [
-                    Question(title: "¿Qué porcentaje de tu plato contenía frutas o verduras?", answers: [
+                Question(title: "¿Qué porcentaje de tu plato contenía frutas o verduras?", options: [
                         Answer(option: "Menos de 25%", ponderation: 1),
                         Answer(option: "Entre 25% y 50%", ponderation: 2),
                         Answer(option: "Entre 50% y 75%", ponderation: 3),
                         Answer(option: "Más de 75%", ponderation: 4)]),
                     
-                    Question(title: "El plato que comiste ¿Dónde lo conseguiste?", answers: [
+                    Question(title: "El plato que comiste ¿Dónde lo conseguiste?", options: [
                         Answer(option: "Comida rápida", ponderation: 1),
                         Answer(option: "Comida Corrida", ponderation: 2),
                         Answer(option: "Hecha en casa", ponderation: 3),
                         Answer(option: "Restaurante", ponderation: 4)]),
                     
-                    Question(title: "¿Qué tan satisfecho te sentiste después de comer?", answers: [
+                    Question(title: "¿Qué tan satisfecho te sentiste después de comer?", options: [
                         Answer(option: "Satisfecho", ponderation: 1),
                         Answer(option: "Neutral", ponderation: 2),
                         Answer(option: "Insatisfecho", ponderation: 3),
                         Answer(option: "No sé", ponderation: 4)]),
                         
-                    Question(title: "¿Cuánto tiempo te tomó comer?", answers: [
+                    Question(title: "¿Cuánto tiempo te tomó comer?", options: [
                         Answer(option: "Menos de 10 minutos", ponderation: 1),
                         Answer(option: "10-20 minutos", ponderation: 2),
                         Answer(option: "20-30 minutos", ponderation: 3),
                         Answer(option: "Más de 30 minutos", ponderation: 4)]),
                     
-                    Question(title: "¿Qué bebida acompañó tu comida?", answers: [
+                    Question(title: "¿Qué bebida acompañó tu comida?", options: [
                         Answer(option: "Agua", ponderation: 1),
                         Answer(option: "Refresco", ponderation: 2),
                         Answer(option: "Jugo natural", ponderation: 3),
                         Answer(option: "Ninguna", ponderation: 4)]),
                         
-                    Question(title: "¿Cómo describirías la calidad nutricional de tu comida?", answers: [
+                    Question(title: "¿Cómo describirías la calidad nutricional de tu comida?", options: [
                         Answer(option: "Buena", ponderation: 1),
                         Answer(option: "Regular", ponderation: 2),
                         Answer(option: "Mala", ponderation: 3),
                         Answer(option: "No sé", ponderation: 4)])
                     ]
+            self.getCurrentQuestion()
+        }
+        
+        func getCurrentQuestion(){
+            currentQuestion = questions[currentQuestionNumber]
         }
         
         func selectAnswer(_ answer: Answer, for question: Question) {
@@ -60,16 +67,18 @@ extension QuestionView {
         }
         
         func nextQuestion() {
-            if currentQuestion > questions.count - 1 {
-                let aux = calculateScore()
+            if currentQuestionNumber >= questions.count - 1 {
+                _ = calculateScore()
             } else {
-                currentQuestion += 1
+                currentQuestionNumber += 1
+                self.getCurrentQuestion()
             }
         }
         
         func previousQuestion() {
-            if currentQuestion > 0 {
-                currentQuestion -= 1
+            if currentQuestionNumber > 0 {
+                currentQuestionNumber -= 1
+                self.getCurrentQuestion()
             }
         }
         
