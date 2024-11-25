@@ -12,7 +12,7 @@ struct QuestionView: View {
     
     var body: some View {
         VStack{
-            Text(viewModel.question.title)
+            Text("maldita sea")
         }
     }
 }
