@@ -10,15 +10,22 @@ import Foundation
 extension QuestionView {
     @Observable
     class ViewModel {
-        var currentQuestion: Int
+        var currentQuestionNumber: Int
         var selectedAnswer: Answer?
         var questions: [Question]
+        var currentQuestion = Question()
         
         init(){
-            currentQuestion = 1
+            currentQuestionNumber = 0
             //Agregar Preguntas Aqui
             questions = [Question(title: "Titulo de Pregunta", answers: [Answer(option: "Opcion 1", ponderation: 0)])]
+            
+            getCurrentQuestion()
         }
-
+        
+        func getCurrentQuestion() {
+            currentQuestion = questions[currentQuestionNumber]
+        }
+        
     }
 }
