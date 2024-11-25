@@ -24,8 +24,15 @@ extension QuestionView {
         }
         
         func getCurrentQuestion() {
-            currentQuestion = questions[currentQuestionNumber]
+            self.currentQuestion = questions[currentQuestionNumber]
         }
         
+        func nextQuestion(){
+            if (currentQuestionNumber == questions.count-1) {
+                return
+            }
+            self.currentQuestionNumber += 1
+            getCurrentQuestion()
+        }
     }
 }

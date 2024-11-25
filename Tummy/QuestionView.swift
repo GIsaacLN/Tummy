@@ -18,6 +18,13 @@ struct QuestionView: View {
                 
                 Text(option.optionText)
             }
+            
+            Button (action: viewModel.nextQuestion){
+                Text("Siguiente Pregunta")
+            }
+            .buttonStyle(.borderedProminent)
+            .foregroundStyle(.white)
+            .tint(.orange)
         }
     }
 }
