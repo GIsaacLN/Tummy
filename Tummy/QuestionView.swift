@@ -12,7 +12,19 @@ struct QuestionView: View {
     
     var body: some View {
         VStack{
-            Text("maldita sea")
+            Text(viewModel.currentQuestion.title)
+            
+            ForEach(viewModel.currentQuestion.options, id: \.self) { option in
+                
+                Text(option.optionText)
+            }
+            
+            Button (action: viewModel.nextQuestion){
+                Text("Siguiente Pregunta")
+            }
+            .buttonStyle(.borderedProminent)
+            .foregroundStyle(.white)
+            .tint(.orange)
         }
     }
 }

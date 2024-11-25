@@ -12,10 +12,9 @@ extension QuestionView {
     class ViewModel {
         var currentQuestion: Int = 0
         var selectedAnswer : [UUID: [Answer]] = [:]
-        var questions: [Question]
         
         init(){
-            currentQuestion = 1
+            currentQuestionNumber = 0
             //Agregar Preguntas Aqui
             questions = [
                     Question(title: "¿Qué porcentaje de tu plato contenía frutas o verduras?", answers: [

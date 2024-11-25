@@ -15,10 +15,9 @@ struct Question: Identifiable {
     init(id: UUID = UUID(), title: String, answers: [Answer]) {
         self.id = id
         self.title = title
-        self.answers = answers
+        self.options = options
     }
 }
-
 
 struct Answer: Identifiable {
     let id = UUID()
