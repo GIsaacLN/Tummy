@@ -7,33 +7,35 @@
 
 import Foundation
 
-struct Question {
+struct Question: Hashable, Identifiable {
+    var id = UUID()
     var title: String
-    var answers: [Answer]
+    var options: [Option]
     
-    init(title: String, answers: [Answer]) {
+    init(title: String, options: [Option]) {
         self.title = title
-        self.answers = answers
+        self.options = options
     }
 
     init(){
         title = "No Question"
-        answers = [Answer(), Answer(), Answer(), Answer()]
+        options = [Option(), Option(), Option(), Option()]
     }
     
 }
 
-struct Answer {
-    var option: String
+struct Option: Hashable, Identifiable {
+    var id = UUID()
+    var optionText: String
     var ponderation: Int
     
-    init(option: String, ponderation: Int) {
-        self.option = option
+    init(optionText: String, ponderation: Int) {
+        self.optionText = optionText
         self.ponderation = ponderation
     }
     
     init(){
-        option = "No Answer"
+        optionText = "No Option"
         ponderation = 0
     }
 }

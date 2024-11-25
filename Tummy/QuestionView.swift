@@ -13,6 +13,11 @@ struct QuestionView: View {
     var body: some View {
         VStack{
             Text(viewModel.currentQuestion.title)
+            
+            ForEach(viewModel.currentQuestion.options, id: \.self) { option in
+                
+                Text(option.optionText)
+            }
         }
     }
 }

@@ -11,14 +11,14 @@ extension QuestionView {
     @Observable
     class ViewModel {
         var currentQuestionNumber: Int
-        var selectedAnswer: Answer?
+        var selectedAnswer: Option?
         var questions: [Question]
         var currentQuestion = Question()
         
         init(){
             currentQuestionNumber = 0
             //Agregar Preguntas Aqui
-            questions = [Question(title: "Titulo de Pregunta", answers: [Answer(option: "Opcion 1", ponderation: 0)])]
+            questions = [Question(title: "Titulo de Pregunta", options: [Option(optionText: "Opcion 1", ponderation: 0)])]
             
             getCurrentQuestion()
         }
