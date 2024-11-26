@@ -9,8 +9,12 @@ import SwiftUI
 import SwiftData
 
 struct QuestionView: View {
-    @State private var viewModel = ViewModel()
-    @Environment(\.modelContext) private var modelContext
+    @State private var viewModel: ViewModel
+    
+    init(modelContext: ModelContext) {
+        let viewModel = ViewModel(modelContext: modelContext)
+        _viewModel = State(initialValue: viewModel)
+    }
     
     var body: some View {
         VStack{
@@ -32,7 +36,7 @@ struct QuestionView: View {
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 10)
-                            .fill(isSelected(answer) ?? false ? Color.orange : Color.white)
+                            .fill(isSelected(answer) ? Color.orange : Color.white)
                             .shadow(radius: 5, y: 4)
                             .frame(height: 42)
                         
@@ -95,5 +99,10 @@ struct QuestionView: View {
 }
 
 #Preview {
-    QuestionView()
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: HistoricalData.self, configurations: config)
+
+    
+    QuestionView(modelContext: container.mainContext)
+        .modelContainer(container)
 }

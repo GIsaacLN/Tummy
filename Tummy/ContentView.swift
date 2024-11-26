@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var viewModel = ViewModel()
+    @EnvironmentObject var router: Router
 
     var body: some View {
         VStack {

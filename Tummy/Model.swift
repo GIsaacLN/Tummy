@@ -24,3 +24,14 @@ struct Answer: Identifiable, Hashable {
     let option: String
     let ponderation: Int
 }
+
+struct Tips: Identifiable {
+    let id = UUID()
+    let title: String
+    let description: String
+    
+    init(id: UUID = UUID(), title: String, description: String) {
+        self.title = title
+        self.description = description
+    }
+}

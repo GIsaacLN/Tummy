@@ -21,8 +21,6 @@ class HistoricalData {
     }
 }
 
-
-
 // For testing
 extension Date {
     func last(day: Int) -> Date {
