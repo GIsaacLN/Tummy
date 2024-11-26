@@ -19,7 +19,7 @@ struct Question: Identifiable {
     }
 }
 
-struct Answer: Identifiable {
+struct Answer: Identifiable, Hashable {
     let id = UUID()
     let option: String
     let ponderation: Int
