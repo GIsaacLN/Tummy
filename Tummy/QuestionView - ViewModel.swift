@@ -10,11 +10,12 @@ import Foundation
 extension QuestionView {
     @Observable
     class ViewModel {
-        var currentQuestion: Int = 0
+        var currentQuestion: Int
         var selectedAnswer : [UUID: [Answer]] = [:]
+        var questions: [Question] = []
         
         init(){
-            currentQuestionNumber = 0
+            currentQuestion = 0
             //Agregar Preguntas Aqui
             questions = [
                     Question(title: "¿Qué porcentaje de tu plato contenía frutas o verduras?", answers: [
