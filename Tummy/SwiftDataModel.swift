@@ -11,12 +11,11 @@ import SwiftData
 
 @Model
 class HistoricalData {
-    var id: UUID
+    var id = UUID()
     var date: Date
-    var value: Double
+    var value: Int
     
-    init(id: UUID, date: Date, value: Double) {
-        self.id = id
+    init(date: Date, value: Int) {
         self.date = date
         self.value = value
     }
@@ -32,11 +31,11 @@ extension Date {
 }
 
 let ChartFoodModel: [HistoricalData] = [
-    .init(id: UUID(), date: Date().last(day: -1), value: 400),
-    .init(id: UUID(), date: .now.last(day: -2), value: 900),
-    .init(id: UUID(), date: .now.last(day: -3), value: 690),
-    .init(id: UUID(), date: .now.last(day: -4), value: 550),
-    .init(id: UUID(), date: .now.last(day: -5), value: 800),
-    .init(id: UUID(), date: .now.last(day: -6), value: 820),
-    .init(id: UUID(), date: .now.last(day: -7), value: 600)
+    .init(date: Date().last(day: -1), value: 400),
+    .init(date: .now.last(day: -2), value: 900),
+    .init(date: .now.last(day: -3), value: 690),
+    .init(date: .now.last(day: -4), value: 550),
+    .init(date: .now.last(day: -5), value: 800),
+    .init(date: .now.last(day: -6), value: 820),
+    .init(date: .now.last(day: -7), value: 600)
 ]

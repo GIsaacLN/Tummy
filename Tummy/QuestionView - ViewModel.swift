@@ -6,15 +6,22 @@
 //
 
 import Foundation
+import SwiftData
+import SwiftUI
+
+
 
 extension QuestionView {
     @Observable
+    
     class ViewModel {
-        var currentQuestion: Int
+        var modelContext: ModelContext
+        var currentQuestion: Int = 0
         var selectedAnswer : [UUID: [Answer]] = [:]
         var questions: [Question] = []
         
-        init(){
+        init(modelContext: ModelContext){
+            self.modelContext = modelContext
             currentQuestion = 0
             //Agregar Preguntas Aqui
             questions = [
@@ -62,7 +69,8 @@ extension QuestionView {
         
         func nextQuestion() {
             if currentQuestion > questions.count - 1 {
-                let aux = calculateScore()
+                let data = HistoricalData(date: .now, value: calculateScore())
+                modelContext.insert(data)
             } else {
                 currentQuestion += 1
             }

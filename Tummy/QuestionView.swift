@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct QuestionView: View {
     @State private var viewModel = ViewModel()
+    @Environment(\.modelContext) private var modelContext
     
     var body: some View {
         VStack{
