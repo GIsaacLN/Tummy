@@ -26,7 +26,7 @@ struct TummyApp: App {
                         case .profileView:
                             EmptyView()
                         case .analiticsView:
-                            EmptyView()
+                            StatisticsView()
                         }
                     }
             }

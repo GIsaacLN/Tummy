@@ -8,25 +8,18 @@
 import SwiftUI
 
 struct WeekStatisticsView: View {
-    let weekDays: [(diaSemana: String, diaNumerico: Int, valor: Bool, isToday: Bool)] = [
-        ("L", 10, true, false),
-        ("M", 11, false, true),
-        ("M", 12, false, false),
-        ("J", 13, false, false),
-        ("V", 14, false, false),
-        ("S", 15, false, false),
-        ("D", 16, false, false)
-    ]
+    let weekDays: [(diaSemana: String, diaNumerico: Int, valor: Bool)]
+    let today: Int
 
     var body: some View {
-        VStack{
-            HStack (spacing: 7){
+        VStack {
+            HStack(spacing: 7) {
                 ForEach(weekDays, id: \.diaNumerico) { day in
                     DayStatisticsView(
                         diaSemana: day.diaSemana,
                         diaNum: day.diaNumerico,
                         valor: day.valor,
-                        isToday: day.isToday
+                        today: today
                     )
                 }
             }
@@ -37,11 +30,17 @@ struct WeekStatisticsView: View {
         .cornerRadius(10)
         .shadow(color: Color.black.opacity(0.25), radius: 10, x: 0, y: 4)
         .padding()
-
     }
 }
 
-
-#Preview{
-    WeekStatisticsView()
+#Preview {
+    WeekStatisticsView(weekDays: [
+        ("L", 10, true),
+        ("M", 11, false),
+        ("M", 12, false),
+        ("J", 13, false),
+        ("V", 14, false),
+        ("S", 15, false),
+        ("D", 16, false)
+    ], today: 11)
 }

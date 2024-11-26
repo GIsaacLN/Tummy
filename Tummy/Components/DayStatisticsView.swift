@@ -11,8 +11,19 @@ struct DayStatisticsView: View {
     let diaSemana: String
     let diaNum: Int
     let valor: Bool
-    let isToday: Bool
+    let today: Int
 
+    var bgcolor: Color {
+        if diaNum < today {
+            return .selectedYellow
+        } else if diaNum > today {
+            return .selectedYellow.opacity(0.5)
+        } else if diaNum == today {
+            return .utOrange
+        } else {
+            return .gray
+        }
+    }
     var body: some View {
         VStack{
             Text(diaSemana)
@@ -33,7 +44,7 @@ struct DayStatisticsView: View {
                 }
             }
             .frame(width: 40, height: 70)
-            .background(Color.blue)
+            .background(bgcolor)
             .clipShape(RoundedRectangle(cornerRadius: 10))
             
             Text("\(diaNum)")
@@ -46,9 +57,9 @@ struct DayStatisticsView: View {
 }
 
 #Preview {
-    DayStatisticsView(diaSemana: "L", diaNum: 10, valor: true, isToday: false)
+    DayStatisticsView(diaSemana: "L", diaNum: 10, valor: true, today: 11)
 }
 
 #Preview {
-    DayStatisticsView(diaSemana: "M", diaNum: 11, valor: false, isToday: true)
+    DayStatisticsView(diaSemana: "M", diaNum: 11, valor: false, today: 11)
 }
