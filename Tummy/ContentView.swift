@@ -10,12 +10,34 @@ import SwiftUI
 struct ContentView: View {
     @State private var viewModel = ViewModel()
     @EnvironmentObject var router: Router
+    
+    // Ejemplos de tips con images
     let sampleTips = [
-        Tips(title: "Tip #1", description: "Toma un **vaso** de agua al despertar."),
-        Tips(title: "Tip #2", description: "Haz pausas mientras estudias para mejorar tu concentración."),
-        Tips(title: "Tip #3", description: "Recuerda tomar tus dos litros de agua diaria."),
-        Tips(title: "Tip #4", description: "Mantente activo con al menos 30 minutos de ejercicio al día."),
-        Tips(title: "Tip #5", description: "Prioriza tu sueño para ser más productivo y cuidar tu salud.")
+        Tips(
+            description: "Recuerda tomar tus **dos litros de agua** diaria!",
+            hasAnimation: true,
+            image: "💧"
+        ),
+        Tips(
+            description: "Incluye **frutas y verduras** en cada comida para mejorar tu salud.",
+            hasAnimation: false,
+            image: "🍎🥦"
+        ),
+        Tips(
+            description: "Haz al menos **30 minutos de ejercicio** al día para mantenerte activo.",
+            hasAnimation: false,
+            image: "🏃‍♂️"
+        ),
+        Tips(
+            description: "Toma un descanso de **5 minutos por cada hora** de trabajo para evitar el estrés.",
+            hasAnimation: false,
+            image: "⏱️"
+        ),
+        Tips(
+            description: "Prioriza tu **sueño** y duerme al menos **8 horas** cada noche.",
+            hasAnimation: false,
+            image: "🛌"
+        )
     ]
 
     var body: some View {
@@ -24,8 +46,14 @@ struct ContentView: View {
                 .padding(.horizontal)
             
             TipsView(tips: sampleTips)
+                .frame(height: 140)
+                .padding(.top)
+            
+            Spacer()
             
             TummyView(tummy: .tummy1, message: "Tengo Hambre", action: "Registra tu consumo")
+            
+            Spacer()
             
             
             Button {
@@ -55,6 +83,7 @@ struct ContentView: View {
                 .padding(.horizontal, 70)
             }
             .buttonStyle(.plain)
+            .padding(.bottom)
         }
         
     }

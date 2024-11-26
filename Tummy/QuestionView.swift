@@ -10,6 +10,7 @@ import SwiftData
 
 struct QuestionView: View {
     @State private var viewModel: ViewModel
+    @EnvironmentObject var router: Router
     
     init(modelContext: ModelContext) {
         let viewModel = ViewModel(modelContext: modelContext)
@@ -48,7 +49,12 @@ struct QuestionView: View {
 
             }
             
-            Button (action: viewModel.nextQuestion){
+            Button {
+                viewModel.nextQuestion()
+                if viewModel.currentQuestion == viewModel.questions.count - 1 {
+                    router.navigateBack()
+                }
+            } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundStyle(hasSelected() ? (Color.black.opacity(0.5)) : (Color.orange.opacity(0.5)))

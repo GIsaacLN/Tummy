@@ -31,6 +31,7 @@ struct TummyApp: App {
                     }
             }
         }
+        .environmentObject(router)
         .modelContainer(sharedTummyContainer)
     }
     

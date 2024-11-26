@@ -23,28 +23,39 @@ struct TummyView: View{
     let message: String
     let action: String
     
+    @State var showOverlay: Bool = false
+    @State var isTailWagging: Bool = true
+    @State var speed: Double = 0.7
+    
     var body: some View{
-        ZStack(alignment: .bottomTrailing){
-            tummy.image()
-                .resizable()
-                .scaledToFit()
+        ZStack(alignment: .bottom){
+            AnimateTummy(isTailWagging: $isTailWagging, speed: $speed)
                 .frame(width: 400, height: 400)
-            
-            Image("thoughtBubble")
-                .resizable()
-                .frame(width: 200, height: 200)
-                .overlay(alignment: .center){
-                    VStack{
-                        Text(message)
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                        
-                        Text(action)
-                            .font(.caption)
+                .onTapGesture {
+                    withAnimation(.easeInOut){
+                        showOverlay.toggle()
+                        isTailWagging.toggle()
+                        speed = (isTailWagging ? 0.7 : 0.3)
                     }
-                    .foregroundStyle(.pursianBlue)
-                    .offset(y: 20)
                 }
+            
+            if showOverlay{
+                Image("thoughtBubble")
+                    .resizable()
+                    .frame(width: 200, height: 200)
+                    .overlay(alignment: .center){
+                        VStack{
+                            Text(message)
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                            
+                            Text(action)
+                                .font(.caption)
+                        }
+                        .foregroundStyle(.pursianBlue)
+                        .offset(y: 20)
+                    }
+            }
         }
     }
 }
