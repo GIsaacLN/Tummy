@@ -68,7 +68,7 @@ extension QuestionView {
         }
         
         func nextQuestion() {
-            if currentQuestion > questions.count - 1 {
+            if currentQuestion == questions.count - 1 {
                 let data = HistoricalData(date: .now, value: calculateScore())
                 modelContext.insert(data)
             } else {

@@ -28,11 +28,13 @@ struct Answer: Identifiable, Hashable {
 
 struct Tips: Identifiable {
     let id = UUID()
-    let title: String
     let description: LocalizedStringKey
+    let hasAnimation: Bool
+    let image: String
     
-    init(id: UUID = UUID(), title: String, description: LocalizedStringKey) {
-        self.title = title
+    init(id: UUID = UUID(), description: LocalizedStringKey, hasAnimation: Bool, image: String) {
         self.description = description
+        self.hasAnimation = hasAnimation
+        self.image = image
     }
 }
