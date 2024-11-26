@@ -15,7 +15,7 @@ struct Question: Identifiable {
     init(id: UUID = UUID(), title: String, answers: [Answer]) {
         self.id = id
         self.title = title
-        self.options = options
+        self.answers = answers
     }
 }
 

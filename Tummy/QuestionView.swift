@@ -6,18 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct QuestionView: View {
     @State private var viewModel = ViewModel()
+    @Environment(\.modelContext) private var modelContext
     
     var body: some View {
         VStack{
-            Text(viewModel.currentQuestion.title)
-            
-            ForEach(viewModel.currentQuestion.options, id: \.self) { option in
-                
-                Text(option.optionText)
-            }
             
             Button (action: viewModel.nextQuestion){
                 Text("Siguiente Pregunta")

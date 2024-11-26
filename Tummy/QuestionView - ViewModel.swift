@@ -6,15 +6,23 @@
 //
 
 import Foundation
+import SwiftData
+import SwiftUI
+
+
 
 extension QuestionView {
     @Observable
+    
     class ViewModel {
+        var modelContext: ModelContext
         var currentQuestion: Int = 0
         var selectedAnswer : [UUID: [Answer]] = [:]
+        var questions: [Question] = []
         
-        init(){
-            currentQuestionNumber = 0
+        init(modelContext: ModelContext){
+            self.modelContext = modelContext
+            currentQuestion = 0
             //Agregar Preguntas Aqui
             questions = [
                     Question(title: "¿Qué porcentaje de tu plato contenía frutas o verduras?", answers: [
@@ -61,7 +69,8 @@ extension QuestionView {
         
         func nextQuestion() {
             if currentQuestion > questions.count - 1 {
-                let aux = calculateScore()
+                let data = HistoricalData(date: .now, value: calculateScore())
+                modelContext.insert(data)
             } else {
                 currentQuestion += 1
             }
