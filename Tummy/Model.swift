@@ -15,11 +15,11 @@ struct Question: Identifiable {
     init(id: UUID = UUID(), title: String, answers: [Answer]) {
         self.id = id
         self.title = title
-        self.options = options
+        self.answers = answers
     }
 }
 
-struct Answer: Identifiable {
+struct Answer: Identifiable, Hashable {
     let id = UUID()
     let option: String
     let ponderation: Int
