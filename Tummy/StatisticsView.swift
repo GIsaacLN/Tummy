@@ -8,16 +8,33 @@
 import SwiftUI
 
 struct StatisticsView: View {
+    @EnvironmentObject var viewModel: StatisticsViewModel
+
     var body: some View {
-        VStack{
-            WeekStatisticsView()
+        VStack(alignment: .leading) {
+            Text("Estadísticas")
+                .font(.largeTitle)
+                .bold()
+                .padding(.horizontal)
+
+            WeekStatisticsView(weekDays: viewModel.currentWeek, today: viewModel.today)
             
-            HealthMetricsView()
+            ScrollView{
+                HealthMetricsView()
+            }
+            
+            Spacer()
+
+            StatisticButtonView()
+        }
+        .onChange(of: viewModel.currentWeekIndex){
+            viewModel.updateCurrentWeek()
         }
     }
 }
 
 #Preview {
     StatisticsView()
+        .environmentObject(StatisticsViewModel())
 }
 
