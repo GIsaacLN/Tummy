@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Question: Identifiable {
     let id: UUID
@@ -28,9 +29,9 @@ struct Answer: Identifiable, Hashable {
 struct Tips: Identifiable {
     let id = UUID()
     let title: String
-    let description: String
+    let description: LocalizedStringKey
     
-    init(id: UUID = UUID(), title: String, description: String) {
+    init(id: UUID = UUID(), title: String, description: LocalizedStringKey) {
         self.title = title
         self.description = description
     }
